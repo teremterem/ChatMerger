@@ -16,8 +16,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 DJANGO_BASE_DIR = Path(__file__).resolve().parent.parent
 
-CHAT_MERGER_BASE_DIR = DJANGO_BASE_DIR.parent  # ChatMerger project
-sys.path.append(str(CHAT_MERGER_BASE_DIR.parent))
+# ChatMerger project root directory
+CHAT_MERGER_BASE_DIR = DJANGO_BASE_DIR.parent
+sys.path.append(str(CHAT_MERGER_BASE_DIR))
 
 from chat_merger_config import DJANGO_SECRET_KEY, DJANGO_DEBUG
 
