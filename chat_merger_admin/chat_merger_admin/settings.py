@@ -14,8 +14,10 @@ import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.append(str(BASE_DIR.parent))  # add ChatMerger project root to path
+DJANGO_BASE_DIR = Path(__file__).resolve().parent.parent
+
+CHAT_MERGER_BASE_DIR = DJANGO_BASE_DIR.parent  # ChatMerger project
+sys.path.append(str(CHAT_MERGER_BASE_DIR.parent))
 
 from chat_merger_config import DJANGO_SECRET_KEY, DJANGO_DEBUG
 
@@ -77,7 +79,7 @@ WSGI_APPLICATION = "chat_merger_admin.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": CHAT_MERGER_BASE_DIR / "db.sqlite3",
     }
 }
 
