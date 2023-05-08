@@ -1,7 +1,7 @@
 """Models of chat_merger_db."""
 from django.db import models
 
-from chat_merger_utils import generate_secret
+from chat_merger_utils import generate_secret  # pylint: disable=import-error
 
 
 class Bot(models.Model):
@@ -13,11 +13,48 @@ class Bot(models.Model):
         verbose_name = "🤖 Bot"
         verbose_name_plural = "🤖 Bots"
 
-    # TODO use uuid instead of sequential id ?
-    name = models.CharField(max_length=255, db_index=True)
     api_token = models.CharField(max_length=255, unique=True, default=generate_secret)
-
-    # TODO add created and edited timestamps
+    name = models.TextField()
+    custom_data = models.JSONField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.name} 🤖"
+
+
+# class Human(models.Model):
+#     class Meta:
+#         verbose_name = "👶 Human"
+#         verbose_name_plural = "👶 Humans"
+#
+#     user_uuid = models.UUIDField(unique=True, default=uuid4)
+#     name = models.TextField()
+#     custom_data = models.JSONField(blank=True, null=True)
+#
+#     def __str__(self):
+#         return f"{self.name} 👶"
+#
+#
+# class Channel(models.Model):
+#     class Meta:
+#         verbose_name = "📡 Channel"
+#         verbose_name_plural = "📡 Channels"
+#
+#         unique_together = ("channel_type", "channel_specific_id")
+#
+#     channel_type = models.CharField(max_length=255, unique=True)
+#     channel_specific_id = models.CharField(max_length=255, unique=True)
+#     recipient_bot = models.ForeignKey(Bot, blank=True, null=True, on_delete=models.CASCADE)
+#     recipient_human = models.ForeignKey(Human, blank=True, null=True, on_delete=models.CASCADE)
+#     custom_data = models.JSONField(blank=True, null=True)
+#
+#
+# class Conversation(models.Model):
+#     pass
+#
+#
+# class Message(models.Model):
+#     pass
+#
+#
+# class MessageVersion(models.Model):
+#     pass
