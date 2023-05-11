@@ -9,7 +9,9 @@ aiofiles==22.1.0
 aiosqlite==0.19.0
     # via ypy-websocket
 anyio==3.6.2
-    # via jupyter-server
+    # via
+    #   -c requirements.txt
+    #   jupyter-server
 appnope==0.1.3
     # via
     #   ipykernel
@@ -78,6 +80,7 @@ identify==2.5.24
     # via pre-commit
 idna==3.4
     # via
+    #   -c requirements.txt
     #   anyio
     #   jsonschema
     #   requests
@@ -102,7 +105,6 @@ jedi==0.18.2
     # via ipython
 jinja2==3.1.2
     # via
-    #   -c requirements.txt
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
@@ -167,7 +169,6 @@ lazy-object-proxy==1.9.0
     # via astroid
 markupsafe==2.1.2
     # via
-    #   -c requirements.txt
     #   jinja2
     #   nbconvert
 matplotlib-inline==0.1.6
@@ -304,7 +305,9 @@ six==1.16.0
     #   python-dateutil
     #   rfc3339-validator
 sniffio==1.3.0
-    # via anyio
+    # via
+    #   -c requirements.txt
+    #   anyio
 soupsieve==2.4.1
     # via beautifulsoup4
 stack-data==0.6.2
