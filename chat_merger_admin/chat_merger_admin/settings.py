@@ -20,7 +20,7 @@ DJANGO_BASE_DIR = Path(__file__).resolve().parent.parent
 CHAT_MERGER_BASE_DIR = DJANGO_BASE_DIR.parent
 sys.path.append(str(CHAT_MERGER_BASE_DIR))
 
-from chat_merger_config import DJANGO_SECRET_KEY, DJANGO_DEBUG
+from common.chat_merger_config import DJANGO_SECRET_KEY, DJANGO_DEBUG
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

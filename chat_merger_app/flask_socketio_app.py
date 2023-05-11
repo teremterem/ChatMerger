@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_socketio import SocketIO, join_room, leave_room, emit
 
+from common.chat_merger_config import FLASK_SECRET_KEY
+
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "your_secret_key"
+app.config["SECRET_KEY"] = FLASK_SECRET_KEY
 socketio = SocketIO(app)
 
 
@@ -33,4 +35,4 @@ def on_send_message(data):
 
 
 if __name__ == "__main__":
-    socketio.run(app)
+    socketio.run(app)  # TODO can this be used in production ?

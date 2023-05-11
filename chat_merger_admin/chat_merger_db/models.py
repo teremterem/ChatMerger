@@ -1,7 +1,7 @@
 """Models of chat_merger_db."""
 from django.db import models
 
-from chat_merger_utils import generate_secret  # pylint: disable=import-error
+from common.utils import generate_secret  # pylint: disable=import-error
 
 
 class Bot(models.Model):
