@@ -231,7 +231,7 @@ pickleshare==0.7.5
     # via ipython
 pip-tools==6.13.0
     # via -r dev-requirements.in
-platformdirs==3.5.0
+platformdirs==3.5.1
     # via
     #   black
     #   jupyter-core
@@ -274,6 +274,7 @@ python-json-logger==2.0.7
     # via jupyter-events
 pyyaml==6.0
     # via
+    #   -c requirements.txt
     #   jupyter-events
     #   pre-commit
 pyzmq==25.0.2
