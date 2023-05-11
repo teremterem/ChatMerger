@@ -1,6 +1,10 @@
+import sys
+from pathlib import Path
+
 from flask import Flask
 from flask_socketio import SocketIO, join_room, leave_room, emit
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from common.chat_merger_config import FLASK_SECRET_KEY
 
 app = Flask(__name__)
