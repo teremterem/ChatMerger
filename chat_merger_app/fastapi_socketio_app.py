@@ -26,14 +26,14 @@ async def bot_update(update: BotUpdate, x_chat_merger_bot_token: str = Header(No
         )
     # TODO elif wrong token, then raise http 403 forbidden
 
-    asyncio.create_task(sio.emit("bot_update", update, room=x_chat_merger_bot_token))
+    asyncio.create_task(sio.emit("bot_update", update.dict(), room=x_chat_merger_bot_token))
     return StatusResponseOK()
 
 
 @sio.event
 async def connect(sid: str, env) -> bool:
     """Called when a client connects to the server."""
-    bot_token = env.get("X_CHAT_MERGER_BOT_TOKEN")
+    bot_token = env.get("HTTP_X_CHAT_MERGER_BOT_TOKEN")  # TODO put this in a constant
     if not bot_token:
         return False  # TODO raise exception instead ?
     sio.enter_room(sid, bot_token)
