@@ -3,12 +3,13 @@ from pathlib import Path
 
 import socketio
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from common.chat_merger_config import FASTAPI_SECRET_KEY
 
 sio = socketio.AsyncServer(
-    # client_manager=socketio.AsyncManager(),  # TODO replace with AsyncRedisManager ?
+    # TODO client_manager=socketio.AsyncRedisManager(),
     async_mode="asgi",
     transports=["websocket"],
 )
@@ -16,9 +17,28 @@ fapi = FastAPI(secret_key=FASTAPI_SECRET_KEY)
 app = socketio.ASGIApp(sio, other_asgi_app=fapi)
 
 
-# @fapi.get("/")
-# async def index():
-#     return "Hello world!"
+class BotUpdate(BaseModel):
+    message: str
+
+
+class StatusResponse(BaseModel):
+    status: str
+
+
+class StatusResponseOK(StatusResponse):
+    status = "ok"
+
+
+@fapi.post("/bot_update")
+async def bot_update(update: BotUpdate) -> StatusResponse:
+    # TODO protect with bot secret key
+    print(update.message)
+    return StatusResponseOK()
+
+
+@fapi.get("/")
+async def index():
+    return "Hello world!"
 
 
 @sio.on("join_room")
