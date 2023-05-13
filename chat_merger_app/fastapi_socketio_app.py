@@ -26,7 +26,7 @@ async def bot_update(update: BotUpdate, x_chat_merger_bot_token: str = Header(No
         )
     # TODO elif wrong token, then raise http 403 forbidden
 
-    asyncio.create_task(sio.emit("room_message", update, room=x_chat_merger_bot_token))
+    asyncio.create_task(sio.emit("bot_update", update, room=x_chat_merger_bot_token))
     return StatusResponseOK()
 
 
